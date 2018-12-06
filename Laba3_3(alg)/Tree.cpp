@@ -44,22 +44,22 @@ void Tree::insert(int newelem)
 
 		if (current->parent != nullptr)
 		{
-			if (current->parent->rgt != nullptr)//ó ðîäèòåëÿ åñòü ïðàâûé óçåë
+			if (current->parent->rgt != nullptr)//Ñƒ Ñ€Ð¾Ð´Ð¸Ñ‚ÐµÐ»Ñ ÐµÑÑ‚ÑŒ Ð¿Ñ€Ð°Ð²Ñ‹Ð¹ ÑƒÐ·ÐµÐ»
 			{
-				current = current->parent->rgt;//ïåðåõîäèì íà íåãî
-				while (current->lft != nullptr)//åñëè ó òîãî åñòü ëåâûé
+				current = current->parent->rgt;//Ð¿ÐµÑ€ÐµÑ…Ð¾Ð´Ð¸Ð¼ Ð½Ð° Ð½ÐµÐ³Ð¾
+				while (current->lft != nullptr)//ÐµÑÐ»Ð¸ Ñƒ Ñ‚Ð¾Ð³Ð¾ ÐµÑÑ‚ÑŒ Ð»ÐµÐ²Ñ‹Ð¹
 					current = current->lft;
 			}
 
-			else current = current->parent;//íåò ïðàâîãî óçëà,âñòàâèì â ïðàâûé
+			else current = current->parent;//Ð½ÐµÑ‚ Ð¿Ñ€Ð°Ð²Ð¾Ð³Ð¾ ÑƒÐ·Ð»Ð°,Ð²ÑÑ‚Ð°Ð²Ð¸Ð¼ Ð² Ð¿Ñ€Ð°Ð²Ñ‹Ð¹
 		}
 		else
-		{   //ìû â êîðíå
+		{   //Ð¼Ñ‹ Ð² ÐºÐ¾Ñ€Ð½Ðµ
 			while (current->lft != nullptr)
 				current = current->lft;
 		}
 
-		if (current->lft != nullptr)//âñòàâêà âïðàâî
+		if (current->lft != nullptr)//Ð²ÑÑ‚Ð°Ð²ÐºÐ° Ð²Ð¿Ñ€Ð°Ð²Ð¾
 		{
 			current->rgt = elem;
 			prevlast = last;
@@ -208,7 +208,7 @@ bool Tree::DIterator::has_next()
 {
 	return (lst.get_size() || current != nullptr);
 }
-Iterator * Tree::Dcreate_iterator()const //â ãëóáèíó
+Iterator * Tree::Dcreate_iterator()const //Ð² Ð³Ð»ÑƒÐ±Ð¸Ð½Ñƒ
 {
 	if (this == nullptr && this->root == nullptr) throw std::exception("ERROR");
 	return new DIterator(this->root);
@@ -262,7 +262,7 @@ int Tree::Search(Node *root, int findelem)
 	}
 	else
 	{
-		//cout << "Element not finded\n ";
+		cout << "Element not finded\n ";
 	}
 }
 bool Tree::isEmpty(Node *root)
