@@ -4,31 +4,31 @@
 #include <queue>
 #include <iomanip>
 #include <iostream>
-#include "../../3.2 алг/3.2 алг/Class.h"
-#include "../../3.2 алг/3.2 алг/Class.cpp"
+#include "../../3.2 Р°Р»Рі/3.2 Р°Р»Рі/Class.h"
+#include "../../3.2 Р°Р»Рі/3.2 Р°Р»Рі/Class.cpp"
 
 class Tree
 {
 public:
 
-	class Node//элемент дерева
+	class Node//СЌР»РµРјРµРЅС‚ РґРµСЂРµРІР°
 	{
 	public:
 		~Node();
 		Node() {};
 
-		int data;//значение
+		int data;//Р·РЅР°С‡РµРЅРёРµ
 		Node *next = next;
-		Node *rgt = nullptr;//правый узел
-		Node*lft = nullptr;//левый узел
-		Node *parent = nullptr;//батюшка родимый
+		Node *rgt = nullptr;//РїСЂР°РІС‹Р№ СѓР·РµР»
+		Node*lft = nullptr;//Р»РµРІС‹Р№ СѓР·РµР»
+		Node *parent = nullptr;//Р±Р°С‚СЋС€РєР° СЂРѕРґРёРјС‹Р№
 		Node(int k);
 		void Delete();
 	};
 	~Tree();
 	Tree() {  };
-	Node *root = nullptr;//корень дерева
-	Node *last = nullptr;//итак понятно
+	Node *root = nullptr;//РєРѕСЂРµРЅСЊ РґРµСЂРµРІР°
+	Node *last = nullptr;//РёС‚Р°Рє РїРѕРЅСЏС‚РЅРѕ
 	Node *prevlast = nullptr;
 	size_t size = 0;
 
@@ -75,3 +75,4 @@ public:
 		Node * current;
 	};
 };
+
