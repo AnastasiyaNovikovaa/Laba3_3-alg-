@@ -18,7 +18,7 @@ int main() {
 	A.insert(24);
 	A.insert(13);
 	A.insert(5);
-	/*A.insert(4);
+	A.insert(4);
 	A.insert(3);
 	A.insert(15);
 	A.insert(20);
@@ -26,11 +26,12 @@ int main() {
 	A.insert(4);
 	A.insert(18);
 	A.insert(2);
-	A.insert(14);*/
+	A.insert(14);
 	cout << "Laboratory lab 3\n";
 	cout << "by Novikova Anastasiya";
 	cout << endl;
 	cout << "Papa-papaaa, our tree:";
+	cout << "The tree head is the element on the left. Read bottom-up.";
 	cout << endl;
 
 	A.print_Tree(A.root,0 );
@@ -67,8 +68,8 @@ int main() {
 	}
 	cout << endl;
 	
-	cout << "Delete 13:\n";
-	A.remove(7, A.root);
+	cout << "Delete 18:\n";
+	A.remove(18, A.root);
 	cout << "Size of tree=" << A.size;
 	cout << endl;
 	if (A.size>0)
