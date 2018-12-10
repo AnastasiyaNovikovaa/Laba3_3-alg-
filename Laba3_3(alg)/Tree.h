@@ -45,8 +45,9 @@ public:
 	void DirectTravers(Node* root, void *null);
 	int Search(Node *root, int elem);
 	int remove(int elem, Node *node);
+	private:
 	bool isEmpty(Node *root);
-    Tree(int key);
+	Tree(int key);
 	
 	class DIterator : public Iterator
 	{
