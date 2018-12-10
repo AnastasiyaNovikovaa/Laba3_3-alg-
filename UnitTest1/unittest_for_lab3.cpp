@@ -20,7 +20,7 @@ namespace UnitTest1
 			A.insert(7);
 			Assert::IsFalse(A.isEmpty(A.root));
         }
-		TEST_METHOD(BSort_of_tree)
+		TEST_METHOD(Bcreate_iterator_ok)
 		{
 			int B[4];
 			B[0] = 4;
@@ -42,7 +42,7 @@ namespace UnitTest1
 					exit = 0;
 				i++;
 			}
-			
+
 			Assert::IsTrue(exit == 1);
 		}
         TEST_METHOD(Remove_not_empty)
@@ -180,9 +180,11 @@ namespace UnitTest1
 			
 			Assert::IsTrue(A.root->data== B);
 		}
-		TEST_METHOD(Insert_middle_and_last_ok)
+		TEST_METHOD(Sort_and_Insert_middle_and_last_ok)
 		{
-			
+			//сортировка происходит в функции вставке.
+			/*Поэтому мы одновременно проверяем присоединился
+				элемент ли к дереву и какую позицию занял*/
 			int B[4];
 			B[0] = 7;
 			B[1] = 2;
@@ -193,10 +195,11 @@ namespace UnitTest1
 			A.insert(1);
 			A.insert(3);
 			A.insert(2);
+			
 			int exit = 1;
 			int i = 1;
 			
-			//�������� �� 2-�� ������,������ �� �������������
+			//проверка со 2-го уровня,голову не рассматриваем
 			Iterator* diterator = A.Dcreate_iterator();
 			if (diterator->has_next()) diterator->next();
 			while (diterator->has_next())
@@ -237,7 +240,7 @@ namespace UnitTest1
 			A.insert(2);
 			A.insert(1);
 			A.insert(7);
-			Assert::IsTrue(A.Search(A.root, 1)==1);
+			Assert::IsTrue(A.Search(A.root, 1));
 		}
 		TEST_METHOD(Search_first_elem)
 		{
@@ -246,7 +249,7 @@ namespace UnitTest1
 			A.insert(2);
 			A.insert(1);
 			A.insert(7);
-			Assert::IsTrue(A.Search(A.root, 7) == 7);
+			Assert::IsTrue(A.Search(A.root, 7));
 		}
 		TEST_METHOD(Search_middle_elem)
 		{
@@ -258,7 +261,7 @@ namespace UnitTest1
 			A.insert(6);
 			A.insert(9);
 			A.insert(7);
-			Assert::IsTrue(A.Search(A.root, 6) == 6);
+			Assert::IsTrue(A.Search(A.root, 6));
 		}
 		TEST_METHOD(Dcreate_iterator_ok)
 		{
@@ -333,6 +336,7 @@ namespace UnitTest1
 			}
 			Assert::IsTrue(exit == 0);
 		}
+		
 		
 
     };
