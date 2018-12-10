@@ -14,7 +14,7 @@ public:
 	class Node//элемент дерева
 	{
 	public:
-		~Node();
+		
 		Node() {};
 
 		int data;//значение
@@ -24,13 +24,16 @@ public:
 		Node *parent = nullptr;//батюшка родимый
 		Node(int k);
 		void Delete();
+	private:
+		~Node();
 	};
-	~Tree();
+	
 	Tree() {  };
 	Node *root = nullptr;//корень дерева
-	Node *last = nullptr;//итак понятно
+	Node *last = nullptr;//последний элемент дерева
 	Node *prevlast = nullptr;
 	size_t size = 0;
+
 
 	void insert(int newelem);
 	void print_Tree(Node * p, int level);
