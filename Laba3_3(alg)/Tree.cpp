@@ -81,7 +81,7 @@ void Tree::insert(int newelem)
 
 	TreeSort(last);
 }
-int Tree::remove(int value, Node *node)
+void Tree::remove(int value, Node *node)
 {
 	if (size == 0)
 	{
@@ -90,7 +90,7 @@ int Tree::remove(int value, Node *node)
 	}
 	else
 	{
-		if (size == 1)
+		if (size == 1)//если в дереве один элемент,удаляем его и выводим сообщение о пустоте дерева
 		{
 			if (root->data == value)
 			{
@@ -98,11 +98,12 @@ int Tree::remove(int value, Node *node)
 				cout << "Tree is empty\n";
 				
 				size--;
-				return 0;
+				
 			}
 		}
 		else
 		{
+			//с помощью рекурсии находим необходимый элемент
 			if (node->lft != nullptr && node->data != value)
 			{
 				remove(value, node->lft);
@@ -111,7 +112,11 @@ int Tree::remove(int value, Node *node)
 			{
 				remove(value, node->rgt);
 			}
-
+			// После того,как мы нашли нужный элемент
+			/*мы забиваем значение последнего элемента(последнего добавленного)
+				на место нашего элемента, а сам последний элемент удаляем.
+				После чего с помощью сортировки приводим дерево к правильной форме
+				Т.е. таким,где каждый родитель больше своих детей*/
 			if (node != nullptr && node->data == value)
 			{
 				node->data = last->data;
@@ -127,9 +132,10 @@ int Tree::remove(int value, Node *node)
 				}
 
 				if (last == last->parent->lft)
-					last->parent->lft = nullptr;
+					//last->parent->lft = nullptr;
+					
 				if (last == last->parent->rgt)
-					last->parent->rgt = nullptr;
+					last->parent->rgt = nullptr; 
 				TreeSort(prevlast);
 				size--;
 			}
@@ -242,7 +248,7 @@ void Tree::DirectTravers(Node* root, void *null)
 		DirectTravers(root->rgt, null);
 	}
 }
-int Tree::Search(Node *root, int findelem)
+bool Tree::Search(Node *root, int findelem)
 {
 	Node *elem = new Node;
 	elem->data = findelem;
@@ -256,19 +262,20 @@ int Tree::Search(Node *root, int findelem)
 		}
 		else
 		{
-			cout << "Finded element= " << root->data;
-			return root->data;
+			cout << "Element is found ";
+			return 1;
 		}
 	}
 	else
 	{
-		cout << "Element not finded\n ";
+		cout << "Element not found\n ";
 	}
 }
 bool Tree::isEmpty(Node *root)
 {
 	if (size == 0)
 		return true;
-	else
-		return false;
+	 else
+		 return false;
 }
+
