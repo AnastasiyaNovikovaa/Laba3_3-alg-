@@ -20,41 +20,38 @@ namespace UnitTest1
 			A.insert(7);
 			Assert::IsFalse(A.isEmpty(A.root));
         }
-		TEST_METHOD(Bcreate_iterator_ok)
+		TEST_METHOD(Dcreate_iterator_ok)
 		{
 			int B[4];
-			B[0] = 4;
+			B[0] = 5;
 			B[1] = 3;
-			B[2] = 2;
-			B[3] = 1;
+			B[2] = 1;
+			B[3] = 2;
 			Tree A;
 			A.insert(3);
-			A.insert(4);
+			A.insert(5);
 			A.insert(2);
 			A.insert(1);
 			int exit = 1;
 			int i = 0;
-			Iterator* biterator = A.Bcreate_iterator();
-			while (biterator->has_next())
+			Iterator* diterator = A.Dcreate_iterator();
+			while (diterator->has_next())
 
 			{
-				if (biterator->next() != B[i])
+				if (diterator->next() != B[i])
 					exit = 0;
 				i++;
 			}
-
 			Assert::IsTrue(exit == 1);
 		}
         TEST_METHOD(Remove_not_empty)
 		{
-			
 			Tree A;
-			
 			
 			char error;
 			try
 			{
-				A.remove(1, A.root);
+				A.remove(1);
 			}
 			catch (const std::out_of_range& error)
 			{
@@ -80,7 +77,7 @@ namespace UnitTest1
 			A.insert(1);
 			A.insert(7);
 		
-			A.remove(7, A.root);
+			A.remove(7);
 			
 			int exit = 1;
 			int i = 0;
@@ -110,7 +107,7 @@ namespace UnitTest1
 			A.insert(1);
 			A.insert(7);
 
-			A.remove(1, A.root);
+			A.remove(1);
 			
 			int exit = 1;
 			int i = 0;
@@ -140,7 +137,7 @@ namespace UnitTest1
 			A.insert(1);
 			A.insert(7);
 
-			A.remove(5, A.root);
+			A.remove(5);
 			
 			int exit = 1;
 			int i = 0;
@@ -154,7 +151,7 @@ namespace UnitTest1
 			}
 			Assert::IsTrue(exit == 1);
 		}
-		TEST_METHOD(Insert_in_tree_ok)
+		TEST_METHOD(Insert_first_ok)
 		{
 			int B=4;
 			Tree A;
@@ -169,20 +166,9 @@ namespace UnitTest1
 			
 			Assert::IsTrue(exit==1);
 		}
-
-		TEST_METHOD(Insert_first_ok)
-		{
-			int B = 7;
-			Tree A;
-			A.insert(4);
-			A.insert(7);
-			A.insert(3);
-			
-			Assert::IsTrue(A.root->data== B);
-		}
 		TEST_METHOD(Sort_and_Insert_middle_and_last_ok)
 		{
-			//сортировка происходит в функции вставке.
+			//сортировка происходит в функции вставки.
 			/*Поэтому мы одновременно проверяем присоединился
 				элемент ли к дереву и какую позицию занял*/
 			int B[4];
@@ -211,8 +197,6 @@ namespace UnitTest1
 			}
 			Assert::IsTrue(exit == 1);
 		}
-		
-
         TEST_METHOD(Size_after_remove)
 		{
 			Tree A;
@@ -220,7 +204,7 @@ namespace UnitTest1
 			A.insert(2);
 			A.insert(1);
 			A.insert(7);
-			A.remove(7, A.root);
+			A.remove(7);
 			
 			Assert::IsTrue(A.size==3);
 		}
@@ -240,7 +224,7 @@ namespace UnitTest1
 			A.insert(2);
 			A.insert(1);
 			A.insert(7);
-			Assert::IsTrue(A.Search(A.root, 1));
+			Assert::IsTrue(A.Search(2));
 		}
 		TEST_METHOD(Search_first_elem)
 		{
@@ -249,7 +233,7 @@ namespace UnitTest1
 			A.insert(2);
 			A.insert(1);
 			A.insert(7);
-			Assert::IsTrue(A.Search(A.root, 7));
+			Assert::IsTrue(A.Search(7));
 		}
 		TEST_METHOD(Search_middle_elem)
 		{
@@ -261,31 +245,7 @@ namespace UnitTest1
 			A.insert(6);
 			A.insert(9);
 			A.insert(7);
-			Assert::IsTrue(A.Search(A.root, 6));
-		}
-		TEST_METHOD(Dcreate_iterator_ok)
-		{
-			int B[4];
-			B[0] =5 ;
-			B[1] = 3;
-			B[2] = 1;
-			B[3] = 2;
-			Tree A;
-			A.insert(3);
-			A.insert(5);
-			A.insert(2);
-			A.insert(1);
-			int exit = 1;
-			int i = 0;
-			Iterator* diterator = A.Dcreate_iterator();
-			while (diterator->has_next())
-
-			{
-				if (diterator->next() != B[i])
-					exit = 0;
-				i++;
-			}
-			Assert::IsTrue(exit== 1);
+			Assert::IsTrue(A.Search(6));
 		}
 		TEST_METHOD(Dcreate_iterator_bad)
 		{
@@ -311,7 +271,6 @@ namespace UnitTest1
 			}
 			Assert::IsTrue(exit == 0);
 		}
-		
 		TEST_METHOD(Bcreate_iterator_bad)
 		{
 			int B[4];
@@ -336,8 +295,29 @@ namespace UnitTest1
 			}
 			Assert::IsTrue(exit == 0);
 		}
-		
-		
+		TEST_METHOD(Bcreate_iterator_ok)
+		{
+			int B[4];
+			B[0] = 4;
+			B[1] = 3;
+			B[2] = 2;
+			B[3] = 1;
+			Tree A;
+			A.insert(3);
+			A.insert(4);
+			A.insert(2);
+			A.insert(1);
+			int exit = 1;
+			int i = 0;
+			Iterator* biterator = A.Bcreate_iterator();
+			while (biterator->has_next())
 
-    };
-}
+			{
+				if (biterator->next() != B[i])
+					exit = 0;
+				i++;
+			}
+
+			Assert::IsTrue(exit == 1);
+		}
+		
