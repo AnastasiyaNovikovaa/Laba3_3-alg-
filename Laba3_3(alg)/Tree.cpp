@@ -27,7 +27,7 @@ void Tree::Node::Delete()
 	this->rgt->Delete();
 	free(this);
 }
-void Tree::insert(int newelem)
+void Tree::insert(int newelem)//вставка
 {
 	Node *elem = new Node;
 	elem->data = newelem;
@@ -79,10 +79,22 @@ void Tree::insert(int newelem)
 
 	size++;
 
-	TreeSort(last);
+	 TreeSort(last);
 }
-void Tree::remove(int value, Node *node)
+void Tree::help_Search(int value, Node *node)//поиск элемента с помощью рекурсии для функции remove
 {
+	if (node->lft != nullptr && node->data != value)
+	{
+		help_Search(value, node->lft);
+	}
+	if (node->rgt != nullptr && node->data != value)
+	{
+		help_Search(value, node->rgt);
+	}
+}
+void Tree::remove(int value)
+{
+	Node *node = root;
 	if (size == 0)
 	{
 		throw out_of_range("Tree is empty");
@@ -103,20 +115,25 @@ void Tree::remove(int value, Node *node)
 		}
 		else
 		{
-			//с помощью рекурсии находим необходимый элемент
-			if (node->lft != nullptr && node->data != value)
+			//эта часть перенесена в отдельную функцию
+			////с помощью рекурсии находим необходимый элемент
+			/*if (node->lft != nullptr && node->data != value)
 			{
 				remove(value, node->lft);
 			}
 			if (node->rgt != nullptr &&node->data != value)
 			{
 				remove(value, node->rgt);
-			}
+			}*/
+
+			//используем вспомогательную функцию для того,чтобы найти необходимый элемент
+			help_Search(value,node);
 			// После того,как мы нашли нужный элемент
 			/*мы забиваем значение последнего элемента(последнего добавленного)
 				на место нашего элемента, а сам последний элемент удаляем.
 				После чего с помощью сортировки приводим дерево к правильной форме
 				Т.е. таким,где каждый родитель больше своих детей*/
+
 			if (node != nullptr && node->data == value)
 			{
 				node->data = last->data;
@@ -132,7 +149,7 @@ void Tree::remove(int value, Node *node)
 				}
 
 				if (last == last->parent->lft)
-					//last->parent->lft = nullptr;
+					last->parent->lft = nullptr;
 					
 				if (last == last->parent->rgt)
 					last->parent->rgt = nullptr; 
@@ -142,16 +159,36 @@ void Tree::remove(int value, Node *node)
 		}
 	}
 }
-void Tree::print_Tree(Node * p, int level)
+
+void Tree::showLine(const char* c, int p, int s) 
 {
-	if (p)
-	{
-		print_Tree(p->rgt, level + 1);
-		for (int i = 0; i < level; i++) cout << "   ";
-		cout << p->data << endl;
-		print_Tree(p->lft, level + 1);
-	}
+	    int t = s;
+		for (int i = 0; i < p; i++) 
+		{ 
+			printf(t & 1 ? "|  " : "   "); 
+		   t /= 2; 
+		}
+		printf(c);
 }
+void Tree::showTree(Node* root, int p, int s)//функция красивого вывода дерева,использующая вспомогательную(выше)
+	{
+
+		if (root == NULL) return;
+		printf("%d", root->data); printf("\n");
+		if (root->rgt != NULL) {
+			showLine("|\n", p, s); 
+			showLine("R: ", p, s);
+			showTree(root->rgt, p + 1, s);
+		}
+
+		if (root->lft != NULL) {
+			showLine("|\n", p, s);
+			showLine("L: ", p, s);
+			showTree(root->lft, p + 1, s + ((root->rgt == NULL ? 0 : 1) << p));
+		}
+		
+	}
+
 void Tree::TreeSort(Node* elem)
 {
 	while (elem->parent != nullptr && elem->data > elem->parent->data) {
@@ -248,34 +285,42 @@ void Tree::DirectTravers(Node* root, void *null)
 		DirectTravers(root->rgt, null);
 	}
 }
-bool Tree::Search(Node *root, int findelem)
+bool Tree::help_Search_in_search(Node *node, int findelem)//функция-помощник для основной функции поиска(ниже)
 {
 	Node *elem = new Node;
 	elem->data = findelem;
-
 	if (root)
 	{
 		if (root->data != elem->data)
 		{
-			Search(root->lft, findelem);
-			Search(root->rgt, findelem);
+
+			help_Search_in_search(root->lft, findelem);
+			help_Search_in_search(root->rgt, findelem);
 		}
 		else
-		{
-			cout << "Element is found ";
+			return true;
+	}
+}
+bool Tree::Search(int findelem)
+{
+	
+	if (help_Search_in_search(root,findelem))
+	
+	    {   cout << "Element is found ";
 			return 1;
 		}
-	}
+	
 	else
 	{
 		cout << "Element not found\n ";
+		return 0;
 	}
 }
+
 bool Tree::isEmpty(Node *root)
 {
-	if (size == 0)
-		return true;
-	 else
-		 return false;
+	/*return (size == 0)? true:false;  // Тернарный оператор)*/
+	return (size == 0);//так еще короче
+		
 }
 
