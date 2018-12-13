@@ -6,27 +6,18 @@ using namespace std;
 
 int main() {
 	Tree A;
+	A.insert(6);
+	A.insert(10);
 	A.insert(3);
 	A.insert(5);
-	A.insert(2);
-	A.insert(1);
-	A.insert(7);
-	A.insert(6);
 	A.insert(16);
 	A.insert(17);
-	A.insert(10);
-	A.insert(24);
-	A.insert(13);
-	A.insert(5);
-	A.insert(4);
-	A.insert(3);
-	A.insert(15);
-	A.insert(20);
-	A.insert(1);
-	A.insert(4);
-	A.insert(18);
 	A.insert(2);
-	A.insert(14);
+	A.insert(1);
+        A.insert(7);
+	A.insert(24);
+	A.insert(4);
+	
 	cout << "Laboratory lab 3\n";
 	cout << "by Novikova Anastasiya";
 	cout << endl;
@@ -34,22 +25,11 @@ int main() {
 	cout << "The tree head is the element on the left. Read bottom-up.";
 	cout << endl;
 
-	A.print_Tree(A.root,0 );
+	A.showTree(A.root, 0, 0);
 	cout << "Size of tree=" << A.size;
 	cout << endl;
 	cout << "Find the element 10:\n";
-	A.Search(A.root, 10);
-	cout << endl;
-	cout << "Back traversal of the tree in depth\n";
-	A.BackTravers(A.root,  NULL);
-	cout << endl;
-	cout << "Symmetrical tree traversal in depth\n";
-	A.SymTravers(A.root, NULL);
-	cout << endl;
-	cout << "Direct tree traversal in depth\n";
-	A.DirectTravers(A.root, NULL);
-
-	cout << endl;
+	A.Search( 10);
 	cout << endl;
 	cout << "Traversing the tree in depth with iterator\n";
 	Iterator* diterator = A.Dcreate_iterator();
@@ -68,13 +48,13 @@ int main() {
 	}
 	cout << endl;
 	
-	cout << "Delete 18:\n";
-	A.remove(18, A.root);
+	cout << "Delete 24:\n";
+	A.remove(24);
 	cout << "Size of tree=" << A.size;
 	cout << endl;
 	if (A.size>0)
 	{
-		A.print_Tree(A.root, 0);
+		A.showTree(A.root,0, 0);
 	}
 	cout << endl;
 	system("pause");
