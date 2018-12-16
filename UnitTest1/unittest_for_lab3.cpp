@@ -206,7 +206,7 @@ namespace UnitTest1
 			A.insert(7);
 			A.remove(7);
 			
-			Assert::IsTrue(A.size==3);
+			Assert::IsTrue(A.get_size()==3);
 		}
 		TEST_METHOD(Size_of_tree)
 		{
@@ -215,7 +215,7 @@ namespace UnitTest1
 			A.insert(2);
 			A.insert(1);
 			A.insert(7);
-            Assert::IsTrue(A.size == 4);
+            Assert::IsTrue(A.get_size() == 4);
 		}
 		TEST_METHOD(Search_last_elem)
 		{
@@ -320,4 +320,9 @@ namespace UnitTest1
 
 			Assert::IsTrue(exit == 1);
 		}
+		
+		
+
+    };
+}
 		
