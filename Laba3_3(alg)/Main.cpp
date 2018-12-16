@@ -1,4 +1,5 @@
 
+
 #include "Tree.h"
 #include <iostream>
 
@@ -25,8 +26,8 @@ int main() {
 	cout << "The tree head is the element on the left. Read bottom-up.";
 	cout << endl;
 
-	A.showTree(A.get_root(), 0, 0);
-	cout << "Size of tree=" << A.get_size();
+	A.showTree(0, 0);
+	
 	cout << endl;
 	cout << "Traversing the tree in depth with iterator\n";
 	Iterator* diterator = A.Dcreate_iterator();
@@ -47,11 +48,11 @@ int main() {
 	
 	cout << "Delete 24:\n";
 	A.remove(24);
-	cout << "Size of tree=" << A.get_size();
+	
 	cout << endl;
 	if (A.get_size ()>0)
 	{
-		A.showTree(A.get_root(),0, 0);
+		A.showTree(0, 0);
 	}
 	cout << "Find the element 10:\n";
 	A.Search( 10);
