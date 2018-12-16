@@ -24,12 +24,21 @@ class Tree
 	     private:
 		~Node();
 	 };
-  public:
-	Tree() {  };
+
 	Node *root = nullptr;//корень дерева
 	Node *last = nullptr;//последний элемент дерева
 	Node *prevlast = nullptr;
 	size_t size = 0;
+  
+public:
+	Tree() {  };
+	size_t get_size() const;
+	Node* get_root();
+	/*Node* get_root()
+	{
+		return root;
+	}*/
+	
 	void TreeSort(Node* elem);
 	void insert(int newelem);
 	void showTree(Node* root, int p, int s);
@@ -44,10 +53,11 @@ class Tree
 	~Tree();
 
 private:
+	
 	Tree(int key);
 	void showLine(const char* c, int p, int s);
 	void help_Search(int findelem, Node *node);
-	bool help_Search_in_search(Node *node, int findelem);
+	bool help_Search_in_search(Node *root, int findelem);
 	
 	class DIterator : public Iterator
 	{
