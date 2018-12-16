@@ -285,13 +285,13 @@ void Tree::DirectTravers(Node* root, void *null)
 		DirectTravers(root->rgt, null);
 	}
 }
-bool Tree::help_Search_in_search(Node *node, int findelem)//функция-помощник для основной функции поиска(ниже)
+bool Tree::help_Search_in_search( Node* root, int findelem)
 {
 	Node *elem = new Node;
 	elem->data = findelem;
-	if (root)
+	if (get_root())
 	{
-		if (root->data != elem->data)
+		if (get_root()->data != elem->data)
 		{
 
 			help_Search_in_search(root->lft, findelem);
@@ -303,7 +303,8 @@ bool Tree::help_Search_in_search(Node *node, int findelem)//функция-по�
 }
 bool Tree::Search(int findelem)
 {
-	
+	Node *root = new Node;
+	root = get_root();
 	if (help_Search_in_search(root,findelem))
 	
 	    {   cout << "Element is found ";
@@ -323,4 +324,14 @@ bool Tree::isEmpty(Node *root)
 	return (size == 0);//так еще короче
 		
 }
+
+size_t Tree::get_size() const//размер дерева
+{
+	return size;
+}
+Tree::Node* Tree::get_root()// указатель на голову
+{
+	return root;
+}
+
 
