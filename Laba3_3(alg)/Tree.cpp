@@ -170,24 +170,29 @@ void Tree::showLine(const char* c, int p, int s)
 		}
 		printf(c);
 }
-void Tree::showTree(Node* root, int p, int s)//функция красивого вывода дерева,использующая вспомогательную(выше)
+void Tree::showTree( int p, int s)//функция красивого вывода дерева,использующая вспомогательную(выше и ниже)
 	{
-
+	
 		if (root == NULL) return;
 		printf("%d", root->data); printf("\n");
-		if (root->rgt != NULL) {
-			showLine("|\n", p, s); 
-			showLine("R: ", p, s);
-			showTree(root->rgt, p + 1, s);
-		}
-
-		if (root->lft != NULL) {
-			showLine("|\n", p, s);
-			showLine("L: ", p, s);
-			showTree(root->lft, p + 1, s + ((root->rgt == NULL ? 0 : 1) << p));
-		}
+		showTree_help(root, p, s);
+	
 		
 	}
+void Tree::showTree_help(Node* root, int p, int s)//помогалка
+{
+	if (root->rgt != NULL) {
+		showLine("|\n", p, s);
+		showLine("R: ", p, s);
+		showTree_help(root->rgt, p + 1, s);
+	}
+
+	if (root->lft != NULL) {
+		showLine("|\n", p, s);
+		showLine("L: ", p, s);
+		showTree_help(root->lft, p + 1, s + ((root->rgt == NULL ? 0 : 1) << p));
+	}
+}
 
 void Tree::TreeSort(Node* elem)
 {
@@ -206,7 +211,6 @@ Tree::Tree(int key)
 {
 	root = new Node(key);
 }
-
 Iterator*Tree::Bcreate_iterator() const
 {
 	if (this == nullptr && this->root == nullptr) throw std::exception("ERROR");
@@ -258,7 +262,6 @@ Iterator * Tree::Dcreate_iterator()const //в глубину
 }
 Tree::Node::Node(int k)
 {
-	/*height = 1;*/
 	data = k;
 	lft = rgt = nullptr;
 }
@@ -318,20 +321,19 @@ bool Tree::Search(int findelem)
 	}
 }
 
+size_t Tree::get_size() const//размер дерева
+{
+	return size;
+}
+Tree::Node* Tree::get_root()
+{
+	return root;
+}
 bool Tree::isEmpty(Node *root)
 {
 	/*return (size == 0)? true:false;  // Тернарный оператор)*/
 	return (size == 0);//так еще короче
 		
-}
-
-size_t Tree::get_size() const//размер дерева
-{
-	return size;
-}
-Tree::Node* Tree::get_root()// указатель на голову
-{
-	return root;
 }
 
 
