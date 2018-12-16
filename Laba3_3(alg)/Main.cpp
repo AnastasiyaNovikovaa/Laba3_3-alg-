@@ -14,7 +14,7 @@ int main() {
 	A.insert(17);
 	A.insert(2);
 	A.insert(1);
-        A.insert(7);
+    A.insert(7);
 	A.insert(24);
 	A.insert(4);
 	
@@ -25,11 +25,8 @@ int main() {
 	cout << "The tree head is the element on the left. Read bottom-up.";
 	cout << endl;
 
-	A.showTree(A.root, 0, 0);
-	cout << "Size of tree=" << A.size;
-	cout << endl;
-	cout << "Find the element 10:\n";
-	A.Search( 10);
+	A.showTree(A.get_root(), 0, 0);
+	cout << "Size of tree=" << A.get_size();
 	cout << endl;
 	cout << "Traversing the tree in depth with iterator\n";
 	Iterator* diterator = A.Dcreate_iterator();
@@ -50,12 +47,14 @@ int main() {
 	
 	cout << "Delete 24:\n";
 	A.remove(24);
-	cout << "Size of tree=" << A.size;
+	cout << "Size of tree=" << A.get_size();
 	cout << endl;
-	if (A.size>0)
+	if (A.get_size ()>0)
 	{
-		A.showTree(A.root,0, 0);
+		A.showTree(A.get_root(),0, 0);
 	}
+	cout << "Find the element 10:\n";
+	A.Search( 10);
 	cout << endl;
 	system("pause");
 	return 0;
